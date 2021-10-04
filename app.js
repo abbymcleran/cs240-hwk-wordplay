@@ -1,10 +1,13 @@
 // connect the dictionary from other js file to this js file
-let dictionary = document.writeln("<script type='text/javascript' src='words.alpha.js'></script>").dictionary;
+import {dictionary} from 'words_alpha';
+let dict = dictionary;
+
+// need to define dictionary
 
 // randomly pick 6 letter word from dictionary
-let word = Math.random()*dictionary.length;
+let word = Math.random()*dict.length;
 while (word.length != 6){
-    word = Math.random()*dictionary.length;
+    word = Math.random()*dict.length;
 }
 
 // hold the letters of the word in an array
@@ -22,15 +25,10 @@ let guessed = [];
 // array holding scrambled letters
 let scramble = [];
 
-// go through each possible 3 letter word; if in dictionary, include it
-// go through each possible 4 letter word; if in dictionary, include it
-// go through each possible 5 letter word; if in dictioinary, include it
-// include the 6 letter word
-
 // function to be used for checking if a letter combination is a word
     function wordCheck(a, b, c, d, e, f) {
     let tempWord = a+b+c+d+e+f;
-    if (dictionary.contains(tempWord)){
+    if (dict.contains(tempWord)){
         unguessed.push(tempWord)
     }
 }
