@@ -1,4 +1,4 @@
-export const dictionary = [
+const dictionary = [
 "a",
 "aa",
 "aaa",

@@ -1,5 +1,6 @@
 // to use the words from the dictionary provided
-let dict = words_alpha.dictionary;
+let dict = []
+dict.push('words_alpha.js'.dictionary);
 
 // randomly pick 6 letter word from dictionary
 let word = Math.random()*dict.length;
