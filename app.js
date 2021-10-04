@@ -1,5 +1,5 @@
 // connect the dictionary from other js file to this js file
-import { dictionary } from './words_alpha.js'
+document.writeln("<script type='text/javascript' src='words.alpha.js'></script>")
 
 // randomly pick 6 letter word from dictionary
 let word = Math.random()*dictionary.length;
