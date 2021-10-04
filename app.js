@@ -10,7 +10,7 @@ while (word.length != 6){
 // hold the letters of the word in an array
 let letters = [];
 for (let i=0; i<6; i++){
-    letters.push(word.charAt(i));
+    letters.push(word[i]);
 }
 
 // array for holding the different word combinations
@@ -26,18 +26,13 @@ let scramble = [];
 // go through each possible 4 letter word; if in dictionary, include it
 // go through each possible 5 letter word; if in dictioinary, include it
 // include the 6 letter word
-//      put all of these words into an array
-// to add to array: unguessed.push(item)
 
-
-
-// see what words can be made from the letters
-// to add to array: unguessed.push(item)
-// create a function for checking if word works, then can just call function
-    // and input #s for letter places
-function wordCheck(a, b, c, d, e, f) {
-    // concatenate the letters into a string
-    // check if the word is in the dictionary
+// function to be used for checking if a letter combination is a word
+    function wordCheck(a, b, c, d, e, f) {
+    let tempWord = a+b+c+d+e+f;
+    if (dictionary.contains(tempWord)){
+        unguessed.push(tempWord)
+    }
 }
 
 // function for scrambling letters
@@ -85,6 +80,59 @@ function endOfGame() {
     }
     if (guessed.length == unguessed.length){
         alert("Congrats! You guessed all the words!")
+    }
+}
+
+// checking for 3-letter words from letter combinations
+for(let a=0; a<6; a++){
+    for(let b=0; b<6; b++){
+        for(let c=0; c<6; c++){
+            if(a!=b && b!=c && a!=c) {
+                wordCheck(letters[a], letters[b], letters[c]);
+            }
+        }
+    }
+}
+// checking for 4-letter words from letter combinations
+for(let a=0; a<6; a++){
+    for(let b=0; b<6; b++){
+        for(let c=0; c<6; c++){
+            for(let d=0; d<6; d++){
+                if(a!=b && b!=c && a!=c && a!=d && b!=d && c!=d) {
+                    wordCheck(letters[a], letters[b], letters[c], letters[d]);
+                }
+            }
+        }
+    }
+}
+// checking for 5-letter words from letter combinations
+for(let a=0; a<6; a++){
+    for(let b=0; b<6; b++){
+        for(let c=0; c<6; c++){
+            for(let d=0; d<6; d++){
+                for(let e=0; e<6; e++){
+                    if(a!=b && b!=c && a!=c && a!=d && b!=d && c!=d && a!=e && b!=e && c!=e && d!=e) {
+                        wordCheck(letters[a], letters[b], letters[c], letters[d], letters[e]);
+                    }
+                }
+            }
+        }
+    }
+}
+// checking for 6-letter words from letter combinations
+for(let a=0; a<6; a++){
+    for(let b=0; b<6; b++){
+        for(let c=0; c<6; c++){
+            for(let d=0; d<6; d++){
+                for(let e=0; e<6; e++){
+                    for(let f=0; f<6; f++){
+                        if(a!=b && b!=c && a!=c && a!=d && b!=d && c!=d && a!=e && b!=e && c!=e && d!=e && a!=f && b!=f && c!=f && d!=f && e!=f) {
+                            wordCheck(letters[a], letters[b], letters[c], letters[d], letters[e], letters[f]);
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
