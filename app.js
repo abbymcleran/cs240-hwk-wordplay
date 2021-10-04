@@ -1,8 +1,5 @@
-// connect the dictionary from other js file to this js file
-import {dictionary} from 'words_alpha';
-let dict = dictionary;
-
-// need to define dictionary
+// to use the words from the dictionary provided
+let dict = words_alpha.dictionary;
 
 // randomly pick 6 letter word from dictionary
 let word = Math.random()*dict.length;
