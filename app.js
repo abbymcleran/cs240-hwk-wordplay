@@ -1,11 +1,11 @@
 // to use the words from the dictionary provided
-let dict = []
-dict.push('words_alpha.js'.dictionary);
+//let dict = []
+//dict.push('words_alpha.js'.dictionary);
 
 // randomly pick 6 letter word from dictionary
-let word = Math.random()*dict.length;
+let word = Math.random()*61337;
 while (word.length != 6){
-    word = Math.random()*dict.length;
+    word = Math.random()*61337;
 }
 
 // hold the letters of the word in an array
@@ -17,65 +17,11 @@ for (let i=0; i<6; i++){
 // array for holding the different word combinations
 let unguessed = [];
 
-// array to hold the correctly guessed words
-let guessed = [];
-
-// array holding scrambled letters
-let scramble = [];
-
 // function to be used for checking if a letter combination is a word
-    function wordCheck(a, b, c, d, e, f) {
+function wordCheck(a, b, c, d, e, f) {
     let tempWord = a+b+c+d+e+f;
-    if (dict.contains(tempWord)){
+    if ('words_alpha.js'.dictionary.contains(tempWord)){
         unguessed.push(tempWord)
-    }
-}
-
-// function for scrambling letters
-function letterScramble() {
-    while (scramble.length < 6){
-        temp = letters[Math.random()*6];
-        if (!scramble.contains(temp)){
-            scramble.push(temp);
-        }
-    }
-}
-
-// function for outputting the scrambled letters as well as the blank spaces for
-// possible words; words that have been guessed will show up
-function outputInfo() {
-    for(let i = 0; i < unguessed.length; i++) {
-        if(guessed.contains(unguessed[i])) {
-            //print the word
-            console.log(unguessed[i]);
-        }
-        else {
-            //have the word printed as lines
-            spaces = unguessed[i].length;
-            if (spaces == 3){
-                console.log("_ _ _");
-            }
-            else if (spaces == 4){
-                console.log("_ _ _ _");
-            }
-            else if (spaces == 5){
-                console.log("_ _ _ _ _")
-            }
-            else{
-                console.log("_ _ _ _ _ _")
-            }   
-        }
-    }
-}
-
-// function for showing results at the end of the game
-function endOfGame() {
-    console.log("You answered " + guessed.length + " out of " + unguessed.length + "!");
-    for(let i = 0; i < unguessed.length; i++) {
-        console.log(unguessed[i]);
-    }
-    if (guessed.length == unguessed.length){
-        alert("Congrats! You guessed all the words!")
     }
 }
 
@@ -132,8 +78,58 @@ for(let a=0; a<6; a++){
     }
 }
 
+// array holding scrambled letters
+let scramble = [];
+
+// function for scrambling letters
+function letterScramble() {
+    while (scramble.length < 6){
+        temp = letters[Math.random()*6];
+        if (!scramble.contains(temp)){
+            scramble.push(temp);
+        }
+    }
+}
+
+// make a call to scramble the letters
+letterScramble();
+
+// make call for user input and print scrambled letters and blank lines
+// function for outputting the scrambled letters as well as the blank spaces for
+// possible words; words that have been guessed will show up
+function outputInfo() {
+    console.log(scramble);
+    for(let i = 0; i < unguessed.length; i++) {
+        if(guessed.contains(unguessed[i])) {
+            console.log(unguessed[i]);
+        }
+        else {
+            spaces = unguessed[i].length;
+            if (spaces == 3){
+                console.log("_ _ _");
+            }
+            else if (spaces == 4){
+                console.log("_ _ _ _");
+            }
+            else if (spaces == 5){
+                console.log("_ _ _ _ _")
+            }
+            else{
+                console.log("_ _ _ _ _ _")
+            }   
+        }
+    }
+}
+
+// make a call to outputInfo() and ask the user for input to start the game
+outputInfo();
+let input = prompt("Enter a guess:");
+
+// array to hold the correctly guessed words
+let guessed = [];
+
 // while the user is playing the game, this will check the inputs given
-while (unguessed!=guessed) {
+while (guessed.length!=unguessed.length) {
     outputInfo();
     let input = prompt("Enter a guess:");
     if (input == null){
@@ -153,6 +149,17 @@ while (unguessed!=guessed) {
         alert(input + " is not a word!");
     }
     console.clear();
+}
+
+// function for showing results at the end of the game
+function endOfGame() {
+    console.log("You answered " + guessed.length + " out of " + unguessed.length + "!");
+    for(let i = 0; i < unguessed.length; i++) {
+        console.log(unguessed[i]);
+    }
+    if (guessed.length == unguessed.length){
+        alert("Congrats! You guessed all the words!")
+    }
 }
 
 // call endOfGame() function once the user is done with the game
