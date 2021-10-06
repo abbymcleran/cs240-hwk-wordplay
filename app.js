@@ -51,12 +51,13 @@ function wordCheck6(a, b, c, d, e, f) {
     }
 }
     
-
 // checking for 3-letter words from letter combinations
 for(let a=0; a<6; a++){
     for(let b=0; b<6; b++){
         for(let c=0; c<6; c++){
+            if(a!=b && b!=c && a!=c) {
                 wordCheck3(letters[a], letters[b], letters[c]);
+            }
         }
     }
 }
@@ -65,7 +66,9 @@ for(let a=0; a<6; a++){
     for(let b=0; b<6; b++){
         for(let c=0; c<6; c++){
             for(let d=0; d<6; d++){
+                if(a!=b && b!=c && a!=c && a!=d && b!=d && c!=d) {
                     wordCheck4(letters[a], letters[b], letters[c], letters[d]);
+                }
             }
         }
     }
@@ -76,7 +79,9 @@ for(let a=0; a<6; a++){
         for(let c=0; c<6; c++){
             for(let d=0; d<6; d++){
                 for(let e=0; e<6; e++){
+                    if(a!=b && b!=c && a!=c && a!=d && b!=d && c!=d && a!=e && b!=e && c!=e && d!=e) {
                         wordCheck5(letters[a], letters[b], letters[c], letters[d], letters[e]);
+                    }
                 }
             }
         }
@@ -89,7 +94,9 @@ for(let a=0; a<6; a++){
             for(let d=0; d<6; d++){
                 for(let e=0; e<6; e++){
                     for(let f=0; f<6; f++){
+                        if(a!=b && b!=c && a!=c && a!=d && b!=d && c!=d && a!=e && b!=e && c!=e && d!=e && a!=f && b!=f && c!=f && d!=f && e!=f) {
                             wordCheck6(letters[a], letters[b], letters[c], letters[d], letters[e], letters[f]);
+                        }
                     }
                 }
             }
@@ -123,7 +130,7 @@ let guessed = [];
 // possible words; words that have been guessed will show up
 function outputInfo() {
     console.clear();
-    console.log(scramble[0]+" "+scramble[1]+" "+scramble[2]+" "+scramble[3]+" "+scramble[4]+" "+scramble[5]);
+    console.log("Available letters: "+scramble[0]+scramble[1]+scramble[2]+scramble[3]+scramble[4]+scramble[5]);
     for(let i = 0; i < unguessed.length; i++) {
         if(guessed.includes(unguessed[i])) {
             console.log(unguessed[i]);
@@ -145,19 +152,16 @@ function outputInfo() {
         }
     }
 }
-
-// make a call to outputInfo() and ask the user for input to start the game
 outputInfo();
-let input = prompt("Enter a guess:");
 
 // while the user is playing the game, this will check the inputs given
 while (guessed.length!=unguessed.length) {
     outputInfo();
     let input = prompt("Enter a guess:");
     if (input == null){
-        endOfGame();
+        break;
     }
-    if (input == "*"){
+    else if (input == "*"){
         letterScramble();
     }
     else if (guessed.includes(input)){
@@ -170,11 +174,11 @@ while (guessed.length!=unguessed.length) {
     else {
         alert(input + " is not a word!");
     }
-    console.clear();
 }
 
 // function for showing results at the end of the game
 function endOfGame() {
+    console.clear();
     console.log("You answered " + guessed.length + " out of " + unguessed.length + "!");
     for(let i = 0; i < unguessed.length; i++) {
         console.log(unguessed[i]);
